@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://d226apo0m8h3i"]
+
+[ext_resource type="Texture2D" uid="uid://d2yy4ww0dd5r1" path="res://characters/Spritesheets/enemies.png" id="1_hpucd"]
+[ext_resource type="Script" path="res://characters/slime_green.gd" id="2_kt6u6"]
+
+[sub_resource type="Animation" id="Animation_0h5rn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ptpoj"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeGreen:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(140, 65, 51, 35), Rect2(258, 85, 57, 29), Rect2(140, 64, 51, 36)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rt33d"]
+_data = {
+"RESET": SubResource("Animation_0h5rn"),
+"walk": SubResource("Animation_ptpoj")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wea85"]
+radius = 22.0907
+
+[node name="Mob" type="CharacterBody2D"]
+
+[node name="SlimeGreen" type="Sprite2D" parent="."]
+texture = ExtResource("1_hpucd")
+region_enabled = true
+region_rect = Rect2(140, 65, 49, 34)
+script = ExtResource("2_kt6u6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeGreen"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_rt33d")
+}
+
+[node name="Area2D" type="Area2D" parent="SlimeGreen"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeGreen/Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_wea85")

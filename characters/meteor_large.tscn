@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ld348v51u22x"]
+
+[ext_resource type="Texture2D" uid="uid://b2riptbenxih" path="res://space/PNG/Default/meteor_large.png" id="1_hgccr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hb8h"]
+radius = 24.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7hb8h")
+
+[node name="MeteorLarge" type="Sprite2D" parent="."]
+texture = ExtResource("1_hgccr")
